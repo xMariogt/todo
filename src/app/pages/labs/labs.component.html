@@ -36,7 +36,7 @@ y formas para hacerlo-->
     <br><br>
     <p>(change)</p>
     <!-- Evento que se dispara cuando se cambia el valor de un input -->
-    <input type="number" [value]="name" (change)="changeHandler($event)">
+    <input type="text" [value]="name" (change)="changeHandler($event)">
 
     <!-- Evento que se dispara cuando se presiona una tecla -->
     <input type="text" [value]="name" (keydown)="keyDownHandler($event)">
@@ -44,4 +44,18 @@ y formas para hacerlo-->
     <!-- Disparar un evento con una combinacion de teclas-->
     <input type="text" [value]="name" (keydown.shift.t)="clickHandler()">
 
+    <hr>
+
+    <h1>Signals</h1>
+    <input type="text" [value]="Lastname()" (change)="changeHandler($event)">
+    <p>My Lastname is: {{ Lastname() }}</p>
+
+    <hr>
+    <h1>Estructuras de control</h1>
+    <ul>
+        <p>total: {{tasks_signal().length}}</p>
+        <li *ngFor="let task of tasks_signal(); index as i">
+            {{i}} {{task}}
+        </li>
+    </ul>
 </div>

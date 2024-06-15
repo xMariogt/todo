@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,7 +16,8 @@ export class LabsComponent {
   ];
 
   //Variables public for the template
-  name = 'Mario';
+  Lastname = signal('Chavarria');
+  name = "Mario"
   age = 25;
   img = 'https://w3schools.com/howto/img_avatar.png';
   disable = true;
@@ -38,7 +39,8 @@ export class LabsComponent {
 
   //Se ejecuta cuando el input cambia
   changeHandler(event: Event) {
-    console.log(event);
+    const input = event.target as HTMLInputElement;
+    this.Lastname.set(input.value); //Forma de asignar un nuevo valor a una variable con Signal
   }
 
   //Se ejecuta cuando se presiona una tecla
@@ -50,4 +52,10 @@ export class LabsComponent {
   /* La principal diferencia entre un change y un keyboard event es que en los 
     input de tipo texto el change no se actualiza hasta que se presiona ENTER
     y el keyboard event se actualiza conforme de presionan las teclas  */
+
+    tasks_signal = signal([
+      'Instalar Angular CLI',
+      'Crear nuevo proyecto',
+      'Crear componentes',
+    ]);
 }
