@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Hola este es mi primer proyecto</h1>
+
+    <ul>
+        <li *ngFor="let task of tasks">
+            {{task}}
+        </li>
+    </ul>
+
+    <hr />
+
+    <h2>{{ 'Hola' }}</h2> <!-- Ejecutar String directamente -->
+    <h2>{{ 'Hola'.repeat(2) }}</h2> <!-- Ejecutar función -->
+    <h2>la suma de 3+3 es {{ 3+3 }}</h2> <!-- Ejecutar operaciones matemáticas -->
+    <p>Hola soy {{ name }} y mi edad es {{ age }}</p>
+ 
+    <!--Objetos a los que se les pueden modificar sus propiedades
+y formas para hacerlo-->
+    <input type="text" [value]="name">
+
+    <input type="text" value={{name}}>
+
+    <button [disabled]="disable">Click me</button>
+
+    <img [src]="img" alt="">
+
+    <!-- Forma de acceder a los atributos de un objeto -->
+    <p>person: {{ person.name }}</p>
+
+    <hr />
+
+    <!--Event Biding: Permite controlar los eventos que suceden con determinados elementos-->
+    <button (click)="clickHandler()">Click me</button>
+    <br>
+    <button (dblclick)="clickHandler()">Click me twice</button>
+    <br><br>
+    <p>(change)</p>
+    <!-- Evento que se dispara cuando se cambia el valor de un input -->
+    <input type="number" [value]="name" (change)="changeHandler($event)">
+
+    <!-- Evento que se dispara cuando se presiona una tecla -->
+    <input type="text" [value]="name" (keydown)="keyDownHandler($event)">
+
+    <!-- Disparar un evento con una combinacion de teclas-->
+    <input type="text" [value]="name" (keydown.shift.t)="clickHandler()">
+
+</div>
