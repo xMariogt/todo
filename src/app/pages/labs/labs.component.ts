@@ -23,7 +23,7 @@ export class LabsComponent {
   disable = true;
 
   //Private variables can't be accessed from the template
-  private phone= "1234567890";
+  private phone = "1234567890";
 
   //Object
   person = {
@@ -53,9 +53,28 @@ export class LabsComponent {
     input de tipo texto el change no se actualiza hasta que se presiona ENTER
     y el keyboard event se actualiza conforme de presionan las teclas  */
 
-    tasks_signal = signal([
-      'Instalar Angular CLI',
-      'Crear nuevo proyecto',
-      'Crear componentes',
-    ]);
+  tasks_signal = signal([
+    'Instalar Angular CLI',
+    'Crear nuevo proyecto',
+    'Crear componentes',
+  ]);
+
+  persona_signal = signal({
+    name: 'Mario',
+    age: 17,
+    img: 'https://w3schools.com/howto/img_avatar.png',
+    phone: '1234567890'
+  })
+
+  changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value
+    this.persona_signal.update(prevState => {
+      return {
+        ...prevState,
+        age: parseInt(newValue,10)
+      }
+    })
+  }
+
 }

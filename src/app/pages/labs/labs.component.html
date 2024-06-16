@@ -13,7 +13,7 @@
     <h2>{{ 'Hola'.repeat(2) }}</h2> <!-- Ejecutar función -->
     <h2>la suma de 3+3 es {{ 3+3 }}</h2> <!-- Ejecutar operaciones matemáticas -->
     <p>Hola soy {{ name }} y mi edad es {{ age }}</p>
- 
+
     <!--Objetos a los que se les pueden modificar sus propiedades
 y formas para hacerlo-->
     <input type="text" [value]="name">
@@ -58,4 +58,17 @@ y formas para hacerlo-->
             {{i}} {{task}}
         </li>
     </ul>
+    <!--Estructuras de control-->
+    <!--ngIf permite que se renderice o no un componente-->
+    <div *ngIf="Lastname() === 'Chavarria'">
+        MyContent
+    </div>
+
+    <div *ngIf="persona_signal().name === 'Mario' && persona_signal().age > 18 else elseBlock">
+        Soy Mario y soy mayor de edad
+    </div>
+    <ng-template #elseBlock>
+        Soy Mario y soy menor de 18
+    </ng-template>
+    <input type="number" [value]="persona_signal().age" (change)="changeAge($event)">
 </div>

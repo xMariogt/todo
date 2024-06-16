@@ -42,4 +42,19 @@ export class HomeComponent {
   deleteTask(index: number){
     this.tasks_signal.update((tasks_signal) => tasks_signal.filter((tasks_signal, position) => position !== index))
   }
+
+  updateTask(index: number){
+    this.tasks_signal.update((tasks_signal) => {
+      return tasks_signal.map((task, position) => {
+        if (position === index){
+          return{
+            ...task,
+            completed: !task.completed
+          }
+        }
+        return task
+      })
+    })
+      
+  };
 }
