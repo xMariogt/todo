@@ -6,6 +6,14 @@
             {{task}}
         </li>
     </ul>
+    <!-- NUEVA SINTAXIS FOR-->
+    <ul>
+        @for(task of tasks_signal(); track task; let i = $index){
+        <li>{{task}}</li>
+        } @empty{
+        <li>No hay tareas</li>
+        }
+    </ul>
 
     <hr />
 
@@ -70,5 +78,60 @@ y formas para hacerlo-->
     <ng-template #elseBlock>
         Soy Mario y soy menor de 18
     </ng-template>
+    <!--NUEVA SINTAXIS DE ANGULAR-->
+    @if (persona_signal().name === 'Mario' && persona_signal().age > 18){
+    <div>
+        Soy Mario y soy mayor de edad
+    </div>
+    } @else {
+    <div>Soy Mario y soy menor de edad</div>
+    }
     <input type="number" [value]="persona_signal().age" (change)="changeAge($event)">
+
+    <hr>
+    <input type="text" [value]="persona_signal().name" (change)="changeName($event)">
+    <div [ngSwitch]="persona_signal().name">
+        <p *ngSwitchCase="'Mario'">Soy Mario</p>
+        <p *ngSwitchCase="'Juan'">Soy Juan</p>
+        <p *ngSwitchDefault>No soy nadie</p>
+    </div>
+    <!--NUEVA SINTAXIS DE ANGULAR-->
+    <div>
+        @switch(persona_signal().name){
+        @case('Mario'){
+        <p>Soy Mario</p>
+        }
+        @case('Juan'){
+        <p>Soy Juan</p>
+        }
+        @default{
+        <p>No soy nadie</p>
+        }
+
+        }
+    </div>
+
+    <hr>
+
+    <!-- Forma mas profesional de manejar los INPUT-->
+    <input type="color" [formControl]="colorCtrl">
+    <p>color: {{ colorCtrl.value }}</p>
+    <!-- forma de agregar codigo svg al html-->
+    <svg>
+        <g>
+            <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value" />
+        </g>
+    </svg>
+
+    <hr>
+    <!-- Forma de cambiar css de manera reactiva-->
+    <input type="number" [formControl]="widthCtrl">
+    <span class="box" [style.width.px]="widthCtrl.value"></span>
+
+    <hr>
+
+    <p>
+        <input type="text" [formControl]="nameCtrl"> <br>
+        <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">Nombre invalido</span>
+    </p>
 </div>
